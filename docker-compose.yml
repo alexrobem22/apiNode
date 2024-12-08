@@ -1,0 +1,39 @@
+version: "3.7"
+
+networks:
+  app_network:
+    driver: bridge
+
+services:
+#banco mysql
+  apiNodeBd:
+    image: mysql:5.7
+    container_name: apiNodeBd
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: alex
+      MYSQL_PASSWORD: root
+    ports:
+      - "3308:3306"
+    volumes:
+      - apiNodeBddata:/var/lib/mysql
+    networks:
+      - app_network
+  nodeapi:
+    container_name: nodeapi
+    build:
+      context: .
+    volumes:
+      - .:/usr/src/app # Mapeia o diretório atual para dentro do container
+    links:
+      - apiNodeBd
+    ports:
+      - "3001:3001"
+    networks:
+      - app_network
+    depends_on:
+      - apiNodeBd
+    env_file:
+      - .env
+volumes:
+  apiNodeBddata:
