@@ -8,10 +8,11 @@ import express from 'express';
 import homeRoutes from './src/routes/homeRoutes';
 import userRoutes from './src/routes/userRoutes';
 import tokenRoutes from './src/routes/tokenRoutes';
+import alunoRoutes from './src/routes/alunoRoutes';
 
 class App {
   constructor() {
-    this.app = express(); 
+    this.app = express();
     this.middlewares();
     this.routes();
   }
@@ -25,6 +26,7 @@ class App {
     this.app.use('/', homeRoutes); // Define as rotas principais
     this.app.use('/users', userRoutes); // Define as rotas principais
     this.app.use('/tokens', tokenRoutes); // Define as rotas principais
+    this.app.use('/aluno', alunoRoutes); // Define as rotas principais
   }
 }
 

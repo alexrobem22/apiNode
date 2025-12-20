@@ -8,7 +8,7 @@ class TokenController {
       // Validação de entrada
       await body('email').isEmail().withMessage('Email inválido').run(req);
       await body('password').notEmpty().withMessage('Senha é obrigatória').run(req);
-      
+
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
@@ -16,7 +16,7 @@ class TokenController {
 
       const { email, password } = req.body;
 
-      const user = await User.findOne({ where: { email } });
+      const user = await User.scope('withPassword').findOne({ where: { email } });
 
       if (!user || !(await user.passwordIsValid(password))) {
         return res.status(401).json({ errors: ['Credenciais inválidas'] });
@@ -29,9 +29,9 @@ class TokenController {
         expiresIn: process.env.TOKEN_EXPERATION || '1d',
       });
 
-      return res.status(200).json({ 
-        token, 
-        user: { id, email } 
+      return res.status(200).json({
+        token,
+        user: { id, email }
       });
 
     } catch (error) {

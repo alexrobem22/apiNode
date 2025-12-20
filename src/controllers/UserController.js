@@ -7,7 +7,7 @@ class UserController {
       const { id } =  req.user;
 
       // Buscar todos os users
-      const users = await User.findByPk(id);
+      const users = await User.findAll();
       if(!users){
         return res.status(400).json({ msg: 'nenhum usuario encontrado' });
       }
@@ -54,7 +54,7 @@ class UserController {
       return res.status(201).json(user);
     } catch (error) {
       // Lida com erros
-      return res.status(500).json({ msg: 'Erro ao criar User', errors: 
+      return res.status(500).json({ msg: 'Erro ao criar User', errors:
           error.errors.map((err) => ({message: err.message,  path: err.path})),
        });
 
