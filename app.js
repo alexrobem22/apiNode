@@ -5,10 +5,12 @@ dotenv.config(); // Carrega variáveis de ambiente do arquivo .env
 import './src/database';
 
 import express from 'express';
+
 import homeRoutes from './src/routes/homeRoutes';
 import userRoutes from './src/routes/userRoutes';
 import tokenRoutes from './src/routes/tokenRoutes';
 import alunoRoutes from './src/routes/alunoRoutes';
+import fotoRoutes from './src/routes/fotoRoutes';
 
 class App {
   constructor() {
@@ -27,6 +29,7 @@ class App {
     this.app.use('/users', userRoutes); // Define as rotas principais
     this.app.use('/tokens', tokenRoutes); // Define as rotas principais
     this.app.use('/aluno', alunoRoutes); // Define as rotas principais
+    this.app.use('/fotos', fotoRoutes); // Define as rotas principais
   }
 }
 
