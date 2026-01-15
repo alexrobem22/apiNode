@@ -1,10 +1,11 @@
 import { Sequelize } from "sequelize";
 import databaseConfig from "../config/database";
-import Aluno from "../models/Aluno";
-import Users from "../models/User";
+import Aluno from "../models/Aluno.js";
+import Users from "../models/User.js";
+import Fotos from "../models/Fotos.js";
 
 // Lista de modelos a serem inicializados
-const models = [Aluno,Users];
+const models = [Aluno, Users, Fotos];
 
 class Database {
   constructor() {

@@ -1,12 +1,18 @@
-import { where } from "sequelize";
-import Aluno from "../models/Aluno";
+import Aluno from "../models/Aluno.js";
+import Fotos from "../models/Fotos.js";
 
 class AlunoController {
   async index(req, res) {
     try {
       // Buscar todos os alunos
       const alunos = await Aluno.findAll({
-        where: { deleted_at: null }
+        attributes: ['id', 'nome', 'sobrenome', 'email', 'idade', 'peso', 'altura', 'deleted_at'],
+        where: { deleted_at: null },
+        order: [['id', 'DESC'], ['Fotos', 'id', 'DESC']],
+        include: {
+          model: Fotos,
+          attributes: ['id', 'originalname', 'filename', 'mimetype', 'url'],
+        },
       });
 
       return res.json(alunos);

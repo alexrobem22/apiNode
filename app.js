@@ -2,15 +2,16 @@ import dotenv from 'dotenv';
 dotenv.config(); // Carrega variáveis de ambiente do arquivo .env
 
 // Inicializa a conexão com o banco de dados
-import './src/database';
+import './src/database/index.js';
 
 import express from 'express';
 
-import homeRoutes from './src/routes/homeRoutes';
-import userRoutes from './src/routes/userRoutes';
-import tokenRoutes from './src/routes/tokenRoutes';
-import alunoRoutes from './src/routes/alunoRoutes';
-import fotoRoutes from './src/routes/fotoRoutes';
+import homeRoutes from './src/routes/homeRoutes.js';
+import userRoutes from './src/routes/userRoutes.js';
+import tokenRoutes from './src/routes/tokenRoutes.js';
+import alunoRoutes from './src/routes/alunoRoutes.js';
+import fotoRoutes from './src/routes/fotoRoutes.js';
+import { resolve } from 'path';
 
 class App {
   constructor() {
@@ -22,6 +23,7 @@ class App {
   middlewares() {
     this.app.use(express.urlencoded({ extended: true })); // Permite receber dados codificados via URL
     this.app.use(express.json()); // Permite receber dados no formato JSON
+    this.app.use(express.static(resolve(__dirname, 'uploads'))); // Servir arquivos estáticos da pasta 'uploads'
   }
 
   routes() {

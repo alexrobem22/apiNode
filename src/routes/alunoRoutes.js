@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import AlunoController from '../controllers/AlunoController'
-import loginRequired from '../middlewares/loginRequired'
+import AlunoController from '../controllers/AlunoController.js'
+import loginRequired from '../middlewares/loginRequired.js'
 
 const router = new Router();
 
