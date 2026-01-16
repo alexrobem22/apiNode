@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-module.exports = {
+export default {
 
 dialect: process.env.DB_DIALECT,
 host:process.env.DB_HOST,
