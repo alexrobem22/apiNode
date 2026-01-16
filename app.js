@@ -1,17 +1,22 @@
 import dotenv from 'dotenv';
-dotenv.config(); // Carrega variáveis de ambiente do arquivo .env
+import express from 'express';
+import { fileURLToPath } from 'url'; // Adicione isso
+import { resolve, dirname } from 'path'; // Adicione dirname
 
 // Inicializa a conexão com o banco de dados
 import './src/database/index.js';
-
-import express from 'express';
-
 import homeRoutes from './src/routes/homeRoutes.js';
 import userRoutes from './src/routes/userRoutes.js';
 import tokenRoutes from './src/routes/tokenRoutes.js';
 import alunoRoutes from './src/routes/alunoRoutes.js';
 import fotoRoutes from './src/routes/fotoRoutes.js';
 import { resolve } from 'path';
+
+dotenv.config(); // Carrega variáveis de ambiente do arquivo .env
+
+// Lógica para o __dirname em ES Modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 class App {
   constructor() {
