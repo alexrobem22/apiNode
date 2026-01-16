@@ -10,7 +10,7 @@ import userRoutes from './src/routes/userRoutes.js';
 import tokenRoutes from './src/routes/tokenRoutes.js';
 import alunoRoutes from './src/routes/alunoRoutes.js';
 import fotoRoutes from './src/routes/fotoRoutes.js';
-import { resolve } from 'path';
+
 
 dotenv.config(); // Carrega variáveis de ambiente do arquivo .env
 
