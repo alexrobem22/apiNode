@@ -5,7 +5,7 @@ import databaseConfig from './src/config/database.cjs';
 const sequelize = new Sequelize(databaseConfig);
 
 const port = 3001;
-app.listen(port, async () => {
+app.listen(port, '0.0.0.0', async () => {
   try {
     // Testa a conexão com o banco de dados
     await sequelize.authenticate();
