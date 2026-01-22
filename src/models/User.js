@@ -44,9 +44,9 @@ export default class User extends Model {
       },
       {
         sequelize,
-        defaultScope: {
-          attributes: { exclude: ['password', 'password_hash'] }
-        },
+        // defaultScope: {
+        //   attributes: { exclude: ['password', 'password_hash'] }
+        // },
         scopes: {
           withPassword: {
             attributes: { include: ['password_hash'] }
