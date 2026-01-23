@@ -28,7 +28,7 @@ services:
     links:
       - apiNodeBd
     ports:
-      - "3001:3001"
+      - "3002:3002"
     networks:
       - app_network
     depends_on:

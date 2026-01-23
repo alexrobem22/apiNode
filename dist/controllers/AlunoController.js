@@ -1,16 +1,16 @@
-import Aluno from "../models/Aluno";
-import Fotos from "../models/Fotos";
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }var _Aluno = require('../models/Aluno'); var _Aluno2 = _interopRequireDefault(_Aluno);
+var _Fotos = require('../models/Fotos'); var _Fotos2 = _interopRequireDefault(_Fotos);
 
 class AlunoController {
   async index(req, res) {
     try {
       // Buscar todos os alunos
-      const alunos = await Aluno.findAll({
+      const alunos = await _Aluno2.default.findAll({
         attributes: ['id', 'nome', 'sobrenome', 'email', 'idade', 'peso', 'altura', 'deleted_at'],
         where: { deleted_at: null },
         order: [['id', 'DESC'], ['Fotos', 'id', 'DESC']],
         include: {
-          model: Fotos,
+          model: _Fotos2.default,
           attributes: ['id', 'originalname', 'filename', 'mimetype', 'url'],
         },
       });
@@ -33,7 +33,7 @@ class AlunoController {
       }
 
       // Cria o registro no banco de dados
-      const aluno = await Aluno.create({
+      const aluno = await _Aluno2.default.create({
         nome,
         sobrenome,
         email,
@@ -56,7 +56,7 @@ class AlunoController {
 
      const { id } = req.body;
 
-      const aluno = await Aluno.findOne({
+      const aluno = await _Aluno2.default.findOne({
         where: {
           id,
           deleted_at: null,
@@ -83,7 +83,7 @@ class AlunoController {
 
      const { id } = req.body;
 
-      const aluno = await Aluno.findOne({
+      const aluno = await _Aluno2.default.findOne({
         where: {
           id,
           deleted_at: null,
@@ -105,4 +105,4 @@ class AlunoController {
   }
 }
 
-export default new AlunoController();
+exports. default = new AlunoController();

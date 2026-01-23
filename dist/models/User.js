@@ -1,12 +1,12 @@
-import Sequelize, { Model }  from "sequelize";
-import bcrryptjs from 'bcryptjs';
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }var _sequelize = require('sequelize'); var _sequelize2 = _interopRequireDefault(_sequelize);
+var _bcryptjs = require('bcryptjs'); var _bcryptjs2 = _interopRequireDefault(_bcryptjs);
 
-export default class User extends Model {
+ class User extends _sequelize.Model {
   static init(sequelize) {
     super.init(
       {
         nome: {
-            type: Sequelize.STRING,
+            type: _sequelize2.default.STRING,
             defaultValue: '',
             validate:{
                 len:{
@@ -16,7 +16,7 @@ export default class User extends Model {
             }
         },
         email: {
-            type: Sequelize.STRING,
+            type: _sequelize2.default.STRING,
             defaultValue: '',
             unique: {
                 msg: 'Email ja existe'
@@ -28,11 +28,11 @@ export default class User extends Model {
             }
         },
         password_hash: {
-            type: Sequelize.STRING,
+            type: _sequelize2.default.STRING,
             defaultValue: '',
         },
         password: {
-            type: Sequelize.VIRTUAL,
+            type: _sequelize2.default.VIRTUAL,
             defaultValue: '',
             validate:{
                 len: {
@@ -56,7 +56,7 @@ export default class User extends Model {
     );
     this.addHook('beforeSave', async (user) => {
       if(user.password){
-          user.password_hash = await bcrryptjs.hash(user.password, 8)
+          user.password_hash = await _bcryptjs2.default.hash(user.password, 8)
       }
 
     })
@@ -71,7 +71,7 @@ export default class User extends Model {
     }
 
     passwordIsValid(password){
-      return bcrryptjs.compare(password, this.password_hash);
+      return _bcryptjs2.default.compare(password, this.password_hash);
     }
-}
+} exports.default = User;
 

@@ -1,14 +1,14 @@
-import multer from 'multer';
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }var _multer = require('multer'); var _multer2 = _interopRequireDefault(_multer);
 
-import multerConfig from '../config/multerConfig';
-import Fotos from '../models/Fotos';
-import User from '../models/User';
-import Aluno from '../models/Aluno';
-const upload = multer(multerConfig).single('foto');
+var _multerConfig = require('../config/multerConfig'); var _multerConfig2 = _interopRequireDefault(_multerConfig);
+var _Fotos = require('../models/Fotos'); var _Fotos2 = _interopRequireDefault(_Fotos);
+var _User = require('../models/User'); var _User2 = _interopRequireDefault(_User);
+var _Aluno = require('../models/Aluno'); var _Aluno2 = _interopRequireDefault(_Aluno);
+const upload = _multer2.default.call(void 0, _multerConfig2.default).single('foto');
 
 
 const checkStudent = async (fk_alunos) => {
-  return Aluno.findOne({
+  return _Aluno2.default.findOne({
     where: {
       id: fk_alunos,
       deleted_at: null,
@@ -17,7 +17,7 @@ const checkStudent = async (fk_alunos) => {
 };
 
 const checkUser = async (fk_users) => {
-  return User.findOne({
+  return _User2.default.findOne({
     where: {
       id: fk_users,
     },
@@ -28,7 +28,7 @@ class FotoController {
 
   store(req, res) {
     return upload(req, res, async (err) => {
-      if (err instanceof multer.MulterError) {
+      if (err instanceof _multer2.default.MulterError) {
         return res.status(400).json({ errors: [err.code] });
       } else if (err) {
         return res.status(400).json({ errors: [err.code] });
@@ -71,7 +71,7 @@ class FotoController {
         });
       }
 
-      const foto = await Fotos.create({
+      const foto = await _Fotos2.default.create({
         originalname,
         filename,
         mimetype,
@@ -85,4 +85,4 @@ class FotoController {
 
 }
 
-export default new FotoController();
+exports. default = new FotoController();

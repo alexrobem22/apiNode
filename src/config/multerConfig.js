@@ -1,9 +1,5 @@
 import multer from 'multer';
 import path from 'path';
-import { fileURLToPath } from 'url'; // Adicione isso
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 const aleatorio = () => Math.floor(Math.random() * 10000 + 10000);
 

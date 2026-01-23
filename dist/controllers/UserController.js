@@ -1,4 +1,4 @@
-import User from "../models/User";
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }var _User = require('../models/User'); var _User2 = _interopRequireDefault(_User);
 
 class UserController {
   async index(req, res) {
@@ -7,7 +7,7 @@ class UserController {
       const { id } =  req.user;
 
       // Buscar todos os users
-      const users = await User.findAll();
+      const users = await _User2.default.findAll();
       if(!users){
         return res.status(400).json({ msg: 'nenhum usuario encontrado' });
       }
@@ -22,7 +22,7 @@ class UserController {
     try {
       const { id } =  req.user;
       // Buscar todos os users
-      const users = await User.findByPk(id);
+      const users = await _User2.default.findByPk(id);
       if(!users){
         return res.status(400).json({ msg: 'nenhum usuario encontrado' });
       }
@@ -44,7 +44,7 @@ class UserController {
       }
 
       // Cria o registro no banco de dados
-      const user = await User.create({
+      const user = await _User2.default.create({
         nome,
         email,
         password
@@ -71,12 +71,12 @@ class UserController {
       }
 
       // Buscar todos os users
-      const users = await User.findByPk(id);
+      const users = await _User2.default.findByPk(id);
       if(!users){
         return res.status(400).json({ msg: 'nenhum usuario encontrado' });
       }
 
-      const [affectedRows] = await User.update(req.body,{
+      const [affectedRows] = await _User2.default.update(req.body,{
         where: { id }
       })
 
@@ -86,7 +86,7 @@ class UserController {
     }
 
     // Buscar o usuário atualizado
-    const updatedUser = await User.findByPk(id);
+    const updatedUser = await _User2.default.findByPk(id);
     return res.json(updatedUser);
 
     } catch (error) {
@@ -105,13 +105,13 @@ class UserController {
       }
 
       // Buscar todos os users
-      const users = await User.findByPk(id);
+      const users = await _User2.default.findByPk(id);
       if(!users){
         return res.status(400).json({ msg: 'nenhum usuario encontrado' });
       }
 
     // Excluir o usuário
-    const deletedRows = await User.destroy({
+    const deletedRows = await _User2.default.destroy({
       where: { id }
     });
 
@@ -130,4 +130,4 @@ class UserController {
 
 }
 
-export default new UserController();
+exports. default = new UserController();
