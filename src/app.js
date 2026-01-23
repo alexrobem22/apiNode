@@ -22,7 +22,7 @@ class App {
   middlewares() {
     this.app.use(express.urlencoded({ extended: true })); // Permite receber dados codificados via URL
     this.app.use(express.json()); // Permite receber dados no formato JSON
-    this.app.use(express.static(resolve(__dirname, "uploads"))); // Servir arquivos estáticos da pasta 'uploads'
+    this.app.use('/images/', express.static(resolve(__dirname, '..', "uploads", 'images'))); // Servir arquivos estáticos da pasta 'uploads'
   }
 
   routes() {
